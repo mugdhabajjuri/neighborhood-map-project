@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Neighbourhood map</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel = "stylesheet" href = "css/styles.css">
+</head>
+<body>
+    <div class="container">
+        <div class="sideNavbar">
+            <div id="mySidenav" class="sidenav">
+              <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+              <h3>List of places </h3>
+              <ul data-bind= "foreach: title">
+                <li data-bind="text: $data"></li>
+              </ul>
+              <input id="search-within" type="text">
+              <input id="search" type="button" value="Go">
+            </div>
+        </div>
+        <div id="map"></div>
+    </div>
+    <script src="js/lib/knockout-3.2.0.js"></script>
+    <script src="js/app.js"></script>
+    <script async defer src="https://maps.googleapis.com/maps/api/js?libraries=geometry,drawing&key=AIzaSyBlcYNTreB3wZDE6L62hdkkKpCmPqN4BJY&v=3&callback=initMap">
+    </script>
+
+
+</body>
+</html>
