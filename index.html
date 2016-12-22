@@ -10,13 +10,15 @@
         <div class="sideNavbar">
             <div id="mySidenav" class="sidenav">
               <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
-              <h3>List of places </h3>
-              <ul data-bind= "foreach: title">
-                <li data-bind="text: $data"></li>
-              </ul>
+            </div>
+              <span style="font-size:30px;cursor:pointer" onclick="openNav()">&#9776; open</span>
               <input id="search-within" type="text">
               <input id="search" type="button" value="Go">
-            </div>
+              <h3>List of places </h3>
+              <ul data-bind= "foreach: locations">
+                <li id="wikipedia-links" data-bind="text: title , click: $parent.wikiDescription"></li>
+              </ul>
+
         </div>
         <div id="map"></div>
     </div>
