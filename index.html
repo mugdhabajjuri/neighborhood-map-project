@@ -8,7 +8,7 @@
 <body>
     <div class="container">
               <span style="font-size:30px;cursor:pointer" onclick="openNav()">&#9776; open</span>
-              <input data-bind="value: searchText, valueUpdate: 'afterkeydown'" placeholder="Search repos..." type="search" />
+              <input data-bind="value: searchText, valueUpdate: 'afterkeydown'" placeholder="Search locations..." type="search" />
                   <span class="loading" style="display:none">loading</span>
                   <ul data-bind="foreach: locations,visible:locations().length>0" class="search_res">
                         <li class="single_res" data-bind="text: title , click: $parent.wikiDes">
