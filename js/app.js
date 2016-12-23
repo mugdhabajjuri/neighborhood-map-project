@@ -24,39 +24,48 @@ var locations = [
                 location: {lat: 25.2632, lng: 55.2972}
               }
             ];
+var ViewModel = function () {
+    var self = this;
+    self.locations = ko.observableArray(locations);
 
-function model(data){
-var $wikiElem
-//$wikiElem.text("");
 
-var wikiUrl = 'http://en.wikipedia.org/w/api.php?action=opensearch&search=' + +'&format=json&callbback=wikiCallback';
-$.ajax(wikiUrl, {
-         dataType: 'jsonp',
-         success: function (response) {
+    self.searchText = ko.observable('').extend({
+        rateLimit: {
+            method: 'notifyWhenChangesStop',
+            timeout: 400
+        }
+    });
+
+    self.searchText.subscribe(getwiki);
+
+    function getwiki(query) {
+      if(query!=""){
+          $('.loading').fadeIn();
+          if (query === "") {
+              self.locations;
+              return;
+          }
+var citystr = locations.title;
+var wikiurl = 'http://en.wikipedia.org/w/api.php?action=opensearch&search=' + citystr +'&format=json&callbback=wikiCallback';
+
+           $.ajax({
+          dataType: 'jsonp',
+          url: wikiurl,
+          success: function (response) {
              var articleList = response[1];
 
              for (var i = 0; i < articleList.length; i++) {
                  articlestr = articleList[i];
                  var url = 'http://en.wikipedia.org/wiki/'+ + articlestr;
-                 $wikiElem.append('<li><a href= "' + url + '">' + articlestr + '</a></li>');
+                 var wikides = function() {'<li><a href= "' + url + '">' +articlestr + '</a></li>'};
              };
+              }
+           })
          }
-      });
-  return($wikiElem);
-}
-
-var ViewModel = function() {
-    var self = this;
-    this.locations = ko.observableArray(locations);
-    self.wikiDescription = model;
     }
+ }
 
-
-
-
-
-ko.applyBindings(new ViewModel());
-
+ko.applyBindings(new ViewModel);
 function initMap() {
       var styles = [
           {
