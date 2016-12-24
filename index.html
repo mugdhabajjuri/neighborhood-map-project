@@ -8,9 +8,11 @@
 <body>
     <div class="container">
               <span style="font-size:30px;cursor:pointer" onclick="openNav()">&#9776; open</span>
-              <form action="#">
-                <input placeholder="Search…" type="search" name="q" data-bind="value: query, valueUpdate: 'keyup'" autocomplete="off">
-              </form>
+              <div class="location-search">
+                    <form id="searchbox" name="searchbox">
+                        <input data-bind="textInput: userInput, value: filter, valueUpdate: 'afterkeydown'" id="search" placeholder="Search Location" type="text">
+                    </form>
+                </div>
                   <ul data-bind="template: {foreach:locations}">
                   <li class="single_res" data-bind="text: title , click: $parent.wikiDes">
                   </li>
