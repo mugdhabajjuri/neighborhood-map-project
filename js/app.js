@@ -25,7 +25,7 @@ var locations = [
                 location: {lat: 25.2632, lng: 55.2972}
               }
             ];
-
+var userInput = (" ");
 
 var viewModel = function () {
     var self = this;
