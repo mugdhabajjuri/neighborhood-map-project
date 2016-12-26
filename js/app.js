@@ -25,34 +25,31 @@ var locations = [
                 location: {lat: 25.2632, lng: 55.2972}
               }
             ];
+
+
+
 var userInput = (" ");
+
 
 var viewModel = function () {
     var self = this;
     self.locations = ko.observableArray(locations);
     self.title = self.locations.title;
     self.filter = ko.observable("");
-    //self.filteredItems = ko.observableArray();
 
     self.filteredItems = ko.computed(function() {
          var listFilter = self.filter().toLowerCase();
          return ko.utils.arrayFilter(self.locations(), function(item) {
-             console.log(item);
-             for(var x in locations) {
-              if(locations[x].title.toLowerCase().indexOf(listFilter) > -1) {
-                if (item.marker) item.marker.setVisible(true);
+             //console.log(item);
+              if(item.title.toLowerCase().indexOf(listFilter) > -1) {
                  return true;
              } else {
-                 item.marker.setVisible(false);
                  return false;
              }
-           }
          });
      }, self);
-    console.log(self.filteredItems);
-
+    //console.log(self.filteredItems);
 }
-
 ko.applyBindings(new viewModel);
 
 function initMap() {
