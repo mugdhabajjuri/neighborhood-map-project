@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Neighbourhood map</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel = "stylesheet" href = "css/styles.css">
+</head>
+<body>
+    <div class="container">
+              <span style="font-size:30px;cursor:pointer" onclick="openNav()">&#9776; open</span>
+              <div class="location-search">
+                    <form id="searchbox" name="searchbox">
+                        <input data-bind="textInput: userInput, value: filter, valueUpdate: 'afterkeydown'" id="search" placeholder="Search Location" type="text">
+                    </form>
+                </div>
+                <ul data-bind="foreach: filteredItems">
+                    <li><button  data-bind="text: title, click: $parent.wikicall"></button></li>
+                </ul>
+
+        </div>
+        <div id="map"></div>
+
+
+    <script src="https://code.jquery.com/jquery-1.12.3.js"></script>
+    <script src="js/lib/knockout-3.2.0.js"></script>
+    <script src="js/app.js"></script>
+    <script async defer src="https://maps.googleapis.com/maps/api/js?libraries=geometry,drawing&key=AIzaSyBlcYNTreB3wZDE6L62hdkkKpCmPqN4BJY&v=3&callback=initMap">
+    </script>
+
+
+</body>
+</html>
