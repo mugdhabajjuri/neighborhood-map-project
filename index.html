@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="Neighborhood Map" content="Front End Nanodegree Project 5">
+    <meta name="author" content="J. Gladstone">
+    <title>Neighborhoodo Map of  Shenandoah Valley , VA</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/bootstrap.css">
+    <link rel="stylesheet" href="css/normalize.css">
+
+</head>
+<!-- Set up map location and  form  field for Wikipedia API. -->
+<body>
+    <div class="container-fluid">
+        <div class="row">
+        <div class="col-md-9">
+      <p>SHENANDOAH VALLEY ATTRACTIONS</p>
+                <div id="map"></div>
+               
+            </div>
+<!-- Use of Knockout for MVVM organization of app.  Set up input field for filter search. -->
+            <div class="col-sm-3">
+                <div class="location-search">
+                    <form id="searchbox" name="searchbox">
+                        <input data-bind="textInput: userInput, value: filter, valueUpdate: 'afterkeydown'" id="search" placeholder="Search Location" type="text">
+                    </form>
+                </div>
+                <ul data-bind="foreach: filteredItems">
+                    <li><button class="btn btn-primary btn-sm" data-bind="text: $data.name, click: $parent.select"></button></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+  <!--   Asynchronous requests for scripts. -->
+    <script src="js/lib/jquery-1.12.3.js"></script>
+    <script src="js/lib/knockout-3.4.0.js"></script>
+    <script src="js/app.js"></script>
+    <script async onerror="googleError()" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB-7MeBLgUfvFyJW4hebJYJuBJFp-cjrgo&callback=initMap"></script>
+</body>
+
+</html>
