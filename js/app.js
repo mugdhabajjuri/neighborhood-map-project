@@ -291,7 +291,7 @@ function initMap() {
         return markerImage;
       }
 
-      function toggleBounce() {
+      function toggleBounce(marker) {
         if(marker.getAnimation() !== null) {
           marker.setAnimation(null);
         } else {
