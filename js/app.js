@@ -5,27 +5,27 @@ var markers = [];
 
 var locations = [
               {
-                id: 1,
+                id: 'ChIJ2Y-H54FCXz4R2gdP3D5Mk24',
                 title: 'Burj khalifa',
                 location: {lat: 25.1972, lng: 55.2744}
               },
               {
-                id: 2,
+                id: 'ChIJLc8UZFdqXz4ROODwebhx2rM',
                 title: 'Burj Al Arab',
                 location: {lat: 25.1413, lng: 55.1853}
               },
               {
-                id: 3,
+                id: 'ChIJGbhFANYUXz4RqRkglD5luNk',
                 title: 'Palm Islands',
                 location: {lat: 25.0032, lng: 55.0204}
               },
               {
-                id: 4,
+                id: 'ChIJP_HMuyloXz4RyC5haEhlfT4',
                 title: 'The Dubai Fountain',
                 location: {lat: 25.2338, lng: 55.2655}
               },
               {
-                id: 5,
+                id: 'ChIJZ2IrNz9DXz4Rf6tkiTJiGFU',
                 title: 'Dubai Museum',
                 location: {lat: 25.2632, lng: 55.2972}
               }
@@ -57,7 +57,9 @@ var viewModel = function () {
 
 
         // Set up variables to access Wikipedia data.
+
     self.wikicall =  function(location) {
+        self.links = ko.observableArray();
          var locName = location.title;
          var wikiUrl = 'http://en.wikipedia.org/w/api.php?action=opensearch&search=' + locName + '&limit=1&format=json&callback=wikiCallback';
          var wikiRequestTimeout = setTimeout(function() {
@@ -70,19 +72,27 @@ var viewModel = function () {
          dataType: "jsonp",
          jsonp: "callback",
          success: function(response) {
-              var wikiList = response[1];
+              var wikiList = response[1],
+                  definitionList = response[2];
                  for (var i = 0; i < wikiList.length; i++) {
                  wikiData = wikiList[i];
-                 var url = 'http://en.wikipedia.org/wiki/' + wikiData;
-
+                 var urlstr = 'http://en.wikipedia.org/wiki/' + wikiData;
+                     definitionStr = definitionList[i];
+                  self.links.push({
+                            url: urlstr,
+                            title: wikiData,
+                            definition: definitionStr
+                        });
                  }
-               windowContent = '<h6>Wikipedia</h6>' + '<h6><a href="' + url + '">' +  wikiData + '</a></h6>' ;
+               windowContent = '<h6>Wikipedia</h6>' + '<h6><a href="' + urlstr + '">' +  wikiData + '</a></h6>' ;
                 console.log(windowContent);
          }
      });
     clearTimeout(wikiRequestTimeout);
      };
-     self.wikicall(location);
+     //self.wikicall(location);
+
+    self.wikipediaLinks = new self.wikicall(location).links;
   }
 ko.applyBindings(new viewModel);
 
@@ -193,6 +203,7 @@ function initMap() {
           // Create an onclick event to open the large infowindow at each marker.
           marker.addListener('click', function() {
             populateInfoWindow(this, largeInfowindow);
+            wikipediaLinks(id);
           });
           // Two event listeners - one for mouseover, one for mouseout,
           // to change the colors back and forth.
@@ -208,6 +219,7 @@ function initMap() {
       // one infowindow which will open at the marker that is clicked, and populate based
       // on that markers position.
       function populateInfoWindow(marker, infowindow) {
+          toggleBounce();
         // Check to make sure the infowindow is not already opened on this marker.
         if (infowindow.marker != marker) {
           // Clear the infowindow content to give the streetview time to load.
@@ -265,6 +277,17 @@ function initMap() {
           new google.maps.Point(10, 34),
           new google.maps.Size(21,34));
         return markerImage;
+      }
+
+      function toggleBounce() {
+        if(marker.getAnimation() !== null) {
+          marker.setAnimation(null);
+        } else {
+            marker.setAnimation(google.maps.Animation.BOUNCE);
+              setTimeout(function() {
+                marker.setAnimation(null);
+              }, 1400);
+          }
       }
 
 }
