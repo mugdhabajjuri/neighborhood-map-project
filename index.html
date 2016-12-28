@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Neighbourhood map</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel = "stylesheet" href = "css/styles.css">
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+          <div class="title centered"><p> Wonderful Places in Dubai </p></div>
+                <div class="location">
+                    <form id="locsearch">
+                        <input type="text" data-bind="textInput: filter" placeholder="Search from the list">
+                    </form>
+                <ul data-bind="foreach: filteredlocations">
+                    <li><button class="btn btn-default" data-bind="text: $data.title, click: $parent.showInfoWindow"></button></li>
+                </ul>
+          </div>
+    </div>
+        <div id="map"></div>
+
+
+    <script src="https://code.jquery.com/jquery-1.12.3.js"></script>
+    <script src="js/lib/knockout-3.2.0.js"></script>
+    <script src="js/app.js"></script>
+    <script async defer src="https://maps.googleapis.com/maps/api/js?libraries=geometry,drawing&key=AIzaSyBlcYNTreB3wZDE6L62hdkkKpCmPqN4BJY&v=3&callback=initMap">
+    </script>
+
+
+</body>
+</html>
