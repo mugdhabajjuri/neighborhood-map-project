@@ -293,8 +293,6 @@ function viewModel(markers) {
     }
 
   });
-
-  //---------------when user clicks on title in side-view, this will trigger the marker for that coffeeshop----------//
    self.showInfoWindow = function(place) {
             toggleBounce(place.marker);
                google.maps.event.trigger(place.marker, 'click');
