@@ -10,6 +10,7 @@ Following Api's are used
      1.  Download or clone the repo.
      2.  OPen the `index.html` file in your browser.
      3.  Internet connection is required.
+     4.  Click on the hamburger icon to view the list of places.
 ## references
      1. [GooglemapsDocumentation](https://developers.google.com/maps/documentation/javascript/tutorial)
      2. [Knockoutjstutorial](http://knockoutjs.com/documentation/introduction.html)
