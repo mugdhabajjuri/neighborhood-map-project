@@ -285,7 +285,6 @@ function viewModel(markers) {
       return self.items();
     } else {
       return ko.utils.arrayFilter(self.items(), function(loc) {
-        //return stringStart(loc.title.toLowerCase(), filter);
         var match = loc.title.toLowerCase().indexOf(filter) !== -1;
                 loc.marker.setVisible(match);
                 return match;
