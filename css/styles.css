@@ -1,0 +1,86 @@
+.map-canvas {
+    top: 105px;
+    bottom: 0px;
+    height: calc(100vh - 100px);
+    left: 0vw;
+    position: absolute;
+    right: 0px;
+}
+
+#pano {
+    width: 200px;
+    height: 200px;
+}
+
+li {
+    font-size: 1.5em;
+}
+
+ul {
+    list-style-type: none;
+    flex-direction: column;
+    padding-top: 10px;
+    padding-left: 5px;
+}
+
+.sub-title {
+    color: #7bc7e6;
+    font-size: 30px;
+    cursor: pointer;
+}
+
+p {
+    font-size: 36px;
+    font-style: italic;
+    color: #7bc7e6;
+    text-align: center;
+}
+
+.sidenav {
+    height: 100%;
+    width: 0;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    background-color: skyblue;
+    overflow-x: hidden;
+    transition: 0.5s;
+    padding-top: 60px;
+}
+
+.menu {
+    color: #818181;
+    font-size: 22px;
+}
+
+.sidenav .listview {
+    padding: 8px 8px 8px 32px;
+    text-decoration: none;
+    font-size: 25px;
+    color: #818181;
+    display: block;
+    transition: 0.3s;
+}
+
+.sidenav a:hover, .offcanvas a:focus {
+    color: #f1f1f1;
+}
+
+.sidenav .closebtn {
+    position: absolute;
+    top: 0;
+    right: 25px;
+    font-size: 36px;
+    margin-left: 50px;
+}
+
+@media screen and (max-height: 450px) {
+    p {
+        font-size: 22px;
+    }
+
+    .sub-title {
+        font-size: 22px;
+    }
+}
